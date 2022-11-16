@@ -100,7 +100,7 @@ bool ComplexVector::operator~() const  // true : all  v[i] != 0
 
 ComplexDouble& ComplexVector::operator[](int index)
 {
-	if (index >= 0 && index <= num) return v[index];
+	if (index >= 0 && index < num) return v[index];
 	return badIndexRef;
 }
 
