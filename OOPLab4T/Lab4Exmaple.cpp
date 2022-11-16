@@ -3,45 +3,36 @@
 #include "ComplexVector.h"
 #include "ComplexMatrix.h"
 int mainExample1() {
+
+	/// <summary>
+	/// Задано : A,B,C,D,F  -  Вектори комплесних чисел 
+	///         a,b,c - комплексні числа.
+	/// Обчислити вираз : F = A+B-B*c+C/b+D*a        
+	/// </summary>
+	/// <returns></returns>
 	ComplexDouble a(1.0, 2), b, c;
-	cout << a << endl;
+	ComplexVector A, B, C, D, F;
 #if defined(_MSC_VER)
-	b._Val[_RE] = 21.3;
-	b._Val[_IM] = 22.3;
+	b._Val[_RE] = 2.3;
+	b._Val[_IM] = 3.1;
+	c = 4.1;
 #else 
-	b.real(21.3);
-	b.imag(22.3);
+	b.real(2.3);
+	b.imag(3.1);
+	c.real(4.1);
 #endif	
+	ComplexVector A(3,2.7), B(3,a), C(3), D, F;
+	D[0] = a; D[1] = b; D[2] = ComplexDouble(3.1, 1);
+	cout <<" Begin data "  << endl;
+	cout << " a= " << a << " b= " << b << " c " << c << endl;
+	cout << " A  \n" << A;
+	cout << " B  \n" << B;
+	cout << " C  \n" << C;
+	cout << " D  \n" << D;
 
-	cout << b << endl;
-	c = a + b;
-	cout << c << endl;
-	cout << " Test  " << endl;
-	ComplexVector VecObj, VecObj1(10);
-	cout << "VecObj \n";
-	VecObj.Output();
-	cout << "VecObj1 \n";
-	VecObj1.Output();
-	cout << " Input a " << endl;
-
-#if defined(_MSC_VER)
-	cin >> a >> a._Val[_IM];
-#else 
-	double re, im;
-	cin >> re >> im;
-	a.real(re);
-	a.imag(im);
-#endif		
-	cout << a << endl;
-	ComplexVector VecObj2(10, a);
-	VecObj2.Output();
-
-	VecObj.Input();
-	cout << endl;
-	VecObj.Output();
-//	VecObj1 = VecObj.Add(VecObj2);
-	VecObj1.Output();
-
+	F = A + B - B * c + C / b + D * a;
+	
+	cout << " D  \n" << D;
 	return 2;
 }
 int mainExample2() {
