@@ -1,5 +1,5 @@
 #include "ComplexMatrix.h"
-extern const double Eps—alculations;
+const double Eps—alculations = 1.e-5;
 ComplexMatrix::ComplexMatrix(int ni, int mi, ComplexDouble b)
 {
 	if (ni <= 0) n = 2; else n = ni;
@@ -18,7 +18,7 @@ ComplexMatrix::ComplexMatrix(const ComplexMatrix& s)
 	int i;
 //	vec = new ComplexVector[n]{ ComplexVector(m) };
 	vec = new ComplexVector[n];    
-	for (i = 0; i < n; i++) vec[i].Init(m);
+	for (i = 0; i < n; i++) vec[i].Init(m,0);
 	for (i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)  vec[i][j] = s.vec[i][j];
 
@@ -34,7 +34,7 @@ ComplexMatrix& ComplexMatrix::operator=(const ComplexMatrix& s)
 					delete[] vec;
 			}
 				vec = new ComplexVector [n];
-				for (i = 0; i < n; i++) vec[i].Init(m);
+				for (i = 0; i < n; i++) vec[i].Init(m,0);
 		}
 		for (i = 0; i < n; i++)
 			for (int j = 0; j < m; j++)  vec[i][j] = s.vec[i][j];

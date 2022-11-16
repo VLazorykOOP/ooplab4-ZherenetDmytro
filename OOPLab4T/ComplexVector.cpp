@@ -114,6 +114,7 @@ ComplexVector& ComplexVector::operator+=(const ComplexVector& b)
 {
 	int i;
 	if(num==b.num) for (i = 0; i < num; i++) v[i] += b.v[i];
+	else
 	{	
 		cout << " Warning: vectors of different sizes are used in operation += \n";
 		if (num < b.num) {
@@ -177,7 +178,6 @@ ComplexVector ComplexVector::operator+(const long& b)
 
 ComplexVector& ComplexVector::operator-=(const ComplexVector& b)
 {
-	int i;
 	int i;
 	if (num == b.num) for (i = 0; i < num; i++) v[i] += b.v[i];
 	else 	{
@@ -269,7 +269,7 @@ ComplexVector& ComplexVector::operator*=(const long& b) {
 ComplexDouble ComplexVector::operator*(const ComplexVector& b)  //  r= a0*b0+a1*b1+...+an-1*bn-1
 {
 	//	ComplexVector rez(*this);
-	return (*this) * b;
+	return *this * b;
 }
 ComplexVector ComplexVector::operator%(const ComplexVector& b)  // (a0*b0, a1*b1,...,an-1*bn-1)
 {

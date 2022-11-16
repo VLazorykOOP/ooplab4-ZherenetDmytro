@@ -23,10 +23,10 @@ public:
 	ComplexVector(const ComplexVector& s);
 	ComplexVector& operator=(const ComplexVector& s);
 	ComplexVector& operator=(ComplexVector&& s) noexcept;
-	void Init(int n);   //
+    void Init(int n);   //
 	void Init(int n, ComplexDouble);   //
 	~ComplexVector() {
-		std::cout << " del vec";
+	//	std::cout << " del vec";
 		if (v) delete[] v;
 	}
 	void Input();

@@ -51,16 +51,36 @@ int mainExample1() {
 	///          a,b,c  -  Вектори комплесних чисел 
 	///          _a,_b,_c - комплексні числа.
 	/// Обчислити вираз : F = A+B*_a-B*_c+C/_b; 
-	///                   c = F*a + D*c         
+	///                   c = F*a + D*b         
 	/// </summary>
 	/// <returns></returns>
 
 int mainExample2() {
-	ComplexMatrix A(5, 5);
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 5; j++) A[i][j] = RandComplexDouble();
-	cout << endl;
-	cout << "Matrix A \n"<<A;
+	ComplexMatrix A(5),  B(5), C(5), D(5), F(5);
+	ComplexVector a(5), b(5), c(5);
+	ComplexDouble _a(3.2, 5), _b(1, 2), _c = RandComplexDouble();
+	{
+		A.RandComplexMatrix();
+		B.RandComplexMatrix();
+		C.RandComplexMatrix();
+		D.RandComplexMatrix();
+		a.RandComplexVector();
+		b.RandComplexVector();
+		c.RandComplexVector();
+		cout << endl;
+		cout << "Matrix A \n" << A;
+		cout << "Matrix B \n" << B;
+		cout << "Matrix C \n" << C;
+		cout << "Matrix D \n" << D;
+		cout << endl;
+		cout << "Vector a \n" << a;
+		cout << "Vector b \n" << b;
+		cout << "Vector c \n" << c;
+	}
+	F = A + B * _a - B * _c + C / _b;
+	cout << "Matrix F \n" << F;
+	c = F * a + D * b;
+	cout << "Vector c \n" << c;
 
 	
 	return 3;

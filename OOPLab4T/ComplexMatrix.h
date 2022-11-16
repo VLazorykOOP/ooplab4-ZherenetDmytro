@@ -18,7 +18,7 @@ public:
 	ComplexMatrix& operator=(const ComplexMatrix& s);
 	ComplexMatrix& operator=(ComplexMatrix&& s) noexcept;
 	~ComplexMatrix() {
-		std::cout << " del mat";
+	//	std::cout << " del mat";
 		if (vec) delete[] vec;
 	}
 	void Input();
