@@ -73,12 +73,16 @@ bool ComplexMatrix::operator~() const
 ComplexVector& ComplexMatrix::operator[](int index)
 {
 	if (index >= 0 && index < n) return vec[index];
+	cout << " Error : operator[] - index index out of range \n";
 	return vec[0];
 }
 
 ComplexMatrix& ComplexMatrix::operator+=(const ComplexMatrix& s)
 {
-	// TODO: вставьте здесь оператор 
+	if (s.n != n) {
+		// 
+	}
+	for (int i = 0; i < n; i++) vec[i] += s.vec[i];
 	return *this;
 }
 
