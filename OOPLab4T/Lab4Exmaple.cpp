@@ -2,6 +2,7 @@
 #include "Lab4Exmaple.h"
 #include "ComplexVector.h"
 #include "ComplexMatrix.h"
+#include "MyAssoc.h"
 
 ComplexDouble RandComplexDouble()
 {
@@ -68,7 +69,21 @@ int mainExample2() {
 	return 3;
 }
 int mainExample3() {
-
+	cout << " End begin \n";
+	uint Flight[5] = { 12,32,23,43,43 };
+	MyTime MTime[5] = { {9,10}, {10,30}, {10,30}, {10,30} , {15,35} };
+	MyAssoc dbase(5, Flight, MTime);
+	dbase.TableFlight();
+	MyTime r = { 10,30 }, ro;
+	uint fli = 32;
+	ro = dbase[fli];
+	cout << " Test : MyTime operator[](uint&s  )  " << "Flight " << fli << " time   " <<
+		ro << endl;
+	cout << " Test : uint	operator[](MyTime&s)  " << " time  " << r << " light  " <<
+		dbase[r] << endl;
+	cout << " Flight with time :   9   to  11 \n";
+	dbase(9, 11);
+	cout << " End test \n";
 	return 4;
 }
 
