@@ -4,10 +4,7 @@
 #include "ComplexMatrix.h"
 #include "MyAssoc.h"
 
-ComplexDouble RandComplexDouble()
-{
-	return ComplexDouble(rand()%10000/(1.0+rand()/100), rand() % 10000 / (1.0 + rand() / 100));
-}
+
 
 int mainExample1() {
 
@@ -59,11 +56,11 @@ int mainExample1() {
 	/// <returns></returns>
 
 int mainExample2() {
-	ComplexMatrix a(5, 5);
+	ComplexMatrix A(5, 5);
 	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 5; j++) a[i][j] = RandComplexDouble();
+		for (int j = 0; j < 5; j++) A[i][j] = RandComplexDouble();
 	cout << endl;
-	cout << a;
+	cout << "Matrix A \n"<<A;
 
 	
 	return 3;

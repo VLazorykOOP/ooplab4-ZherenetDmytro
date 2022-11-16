@@ -7,6 +7,7 @@ using namespace std;
 typedef complex<double> ComplexDouble;
 #define _RE 0
 #define _IM 1
+ComplexDouble RandComplexDouble();
 class ComplexMatrix;
 class ComplexVector
 {
@@ -75,4 +76,6 @@ public:
 	ComplexVector operator/(const ComplexDouble& b);
 	ComplexVector operator/(const double& b);
 	ComplexVector operator/(const long& b);
+	//
+	void RandComplexVector();
 };

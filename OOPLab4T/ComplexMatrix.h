@@ -60,4 +60,6 @@ public:
 
 	ComplexMatrix operator/(const ComplexDouble& b);
 	ComplexMatrix operator/(const double& b);
+
+	void RandComplexMatrix();
 };

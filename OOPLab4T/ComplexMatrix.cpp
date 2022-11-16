@@ -201,6 +201,11 @@ ComplexMatrix ComplexMatrix::operator/(const double& b)
 	return ComplexMatrix();
 }
 
+void ComplexMatrix::RandComplexMatrix()
+{
+	for (int i = 0; i < n; i++) vec[i].RandComplexVector();
+}
+
 istream& operator>>(istream& is, ComplexMatrix& s)
 {
 	for (int i = 0; i < s.n; i++) is >> s.vec[i];

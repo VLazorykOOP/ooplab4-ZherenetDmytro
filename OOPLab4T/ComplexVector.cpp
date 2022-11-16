@@ -1,5 +1,9 @@
 #include "ComplexVector.h"
 ComplexDouble ComplexVector::badIndexRef=0;
+ComplexDouble RandComplexDouble()
+{
+	return ComplexDouble(rand() % 10000 / (1.0 + rand() / 100), rand() % 10000 / (1.0 + rand() / 100));
+}
 ComplexVector::ComplexVector(int n) {
 	if (n <= 0)    n = 2;  // default num =2;
 	num = n;
@@ -61,6 +65,7 @@ ComplexVector& ComplexVector::operator=(ComplexVector&& s) noexcept
 	if (this->v != nullptr) delete[] v;
 	v = s.v;
 	s.num = 0; s.v = nullptr; s.state = -1;
+	return *this;
 }
 
 void ComplexVector::Input() {
@@ -333,6 +338,11 @@ ComplexVector ComplexVector::operator/(const long& b) {
 	ComplexVector rez(*this);
 	rez /= b;
 	return rez;
+}
+
+void ComplexVector::RandComplexVector()
+{
+	for (int i = 0; i < num; i++) v[i] = RandComplexDouble();
 }
 
 /// <summary>

@@ -18,6 +18,6 @@ void MyAssoc::TableFlight()
 		for (int i = 0; i < numRec; i++) {
 			cout << " Flight " << MasFlightNumber[i] << " time " << MasTime[i] << endl;
 		}
-	}
-	
 }
+	
+
