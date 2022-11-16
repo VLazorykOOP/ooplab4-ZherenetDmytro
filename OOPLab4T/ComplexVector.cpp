@@ -1,18 +1,18 @@
 #include "ComplexVector.h"
 ComplexDouble ComplexVector::badIndexRef=0;
+const double EpsÑalculations = 1.e-5;
 ComplexDouble RandComplexDouble()
 {
 	return ComplexDouble(rand() % 10000 / (1.0 + rand() / 100), rand() % 10000 / (1.0 + rand() / 100));
 }
+
 ComplexVector::ComplexVector(int n) {
 	if (n <= 0)    n = 2;  // default num =2;
 	num = n;
 	v = new ComplexDouble[n];
 	for (int i = 0; i < n; i++) {
-		v[i] = 0.0;
-		//v[i]._Val[_RE]=0.0; v[i]._Val[_IM]=0.0;  
+		v[i] = 0.0;  //v[i]._Val[_RE]=0.0; v[i]._Val[_IM]=0.0;  
 	}
-
 }
 ComplexVector::ComplexVector(int n, ComplexDouble& b) : ComplexVector(n) {
 	for (int i = 0; i < num; i++) {
@@ -91,14 +91,14 @@ void ComplexVector::Output() {
 bool ComplexVector::operator!() const   // true : exist v[i] != 0
 {
 	for (int i = 0; i < num; i++)
-		if (fabs(v[i].real()) > 1.e-5 || fabs(v[i].imag()) > 1.e-5)
+		if (fabs(v[i].real()) > EpsÑalculations || fabs(v[i].imag()) > EpsÑalculations)
 			return true;
 	return false;
 }
 bool ComplexVector::operator~() const  // true : all  v[i] != 0
 {
 	for (int i = 0; i < num; i++)
-		if (fabs(v[i].real()) < 1.e-5 && fabs(v[i].imag()) < 1.e-5)
+		if (fabs(v[i].real()) < EpsÑalculations && fabs(v[i].imag()) < EpsÑalculations)
 			return false;
 	return true;
 }
@@ -113,17 +113,19 @@ ComplexDouble& ComplexVector::operator[](int index)
 ComplexVector& ComplexVector::operator+=(const ComplexVector& b)
 {
 	int i;
-	if (num < b.num) {
-		ComplexDouble* tmp;
-		tmp = new ComplexDouble[b.num];
-		for (i = 0; i < num; i++) tmp[i] = v[i] + b.v[i];
-		for (; i < b.num; i++) tmp[i] = b.v[i];
-		num = b.num;
-		if (v != nullptr) delete[] v;
-		v = tmp;
-	}
-	else {
-		for (i = 0; i < b.num; i++) v[i] += b.v[i];
+	if(num==b.num) for (i = 0; i < num; i++) v[i] += b.v[i];
+	{	
+		cout << " Warning: vectors of different sizes are used in operation += \n";
+		if (num < b.num) {
+			ComplexDouble* tmp;
+			tmp = new ComplexDouble[b.num];
+			for (i = 0; i < num; i++) tmp[i] = v[i] + b.v[i];
+			for (; i < b.num; i++) tmp[i] = b.v[i];
+			num = b.num;
+			if (v != nullptr) delete[] v;
+			v = tmp;
+		}
+		else for (i = 0; i < b.num; i++) v[i] += b.v[i];
 	}
 	return *this;
 }
@@ -176,17 +178,20 @@ ComplexVector ComplexVector::operator+(const long& b)
 ComplexVector& ComplexVector::operator-=(const ComplexVector& b)
 {
 	int i;
-	if (num < b.num) {
-		ComplexDouble* tmp;
-		tmp = new ComplexDouble[b.num];
-		for (i = 0; i < num; i++) tmp[i] = v[i] - b.v[i];
-		for (; i < b.num; i++) tmp[i] = -b.v[i];
-		num = b.num;
-		if (v != nullptr) delete[] v;
-		v = tmp;
-	}
-	else {
-		for (i = 0; i < b.num; i++) v[i] -= b.v[i];
+	int i;
+	if (num == b.num) for (i = 0; i < num; i++) v[i] += b.v[i];
+	else 	{
+			cout << " Warning: vectors of different sizes are used in operation -= \n";
+			if (num < b.num) {
+				ComplexDouble* tmp;
+				tmp = new ComplexDouble[b.num];
+				for (i = 0; i < num; i++) tmp[i] = v[i] - b.v[i];
+				for (; i < b.num; i++) tmp[i] = -b.v[i];
+				num = b.num;
+				if (v != nullptr) delete[] v;
+				v = tmp;
+			} 
+			else 	for (i = 0; i < b.num; i++) v[i] -= b.v[i];
 	}
 	return *this;
 }
@@ -239,13 +244,13 @@ ComplexVector ComplexVector::operator-(const long& b)
 ComplexDouble ComplexVector::operator*=(const ComplexVector& b)  //  r= a0*b0+a1*b1+...+an-1*bn-1
 {
 	ComplexDouble ret(0, 0);
-	if (num != b.num) { std::cout << " Error Vector opreation *= \n"; return ret; }
+	if (num != b.num) { std::cout << " Error : vectors of different sizes are used in operation *= \n"; return ret; }
 	for (int i = 0; i < num; i++) ret += v[i] * b.v[i];
 	return ret;
 }
 ComplexVector& ComplexVector::operator%=(const  ComplexVector& b)  // (a0*b0, a1*b1,...,an-1*bn-1)
 {
-	if (num != b.num) { std::cout << " Error Vector opreation %= \n"; return *this; }
+	if (num != b.num) { std::cout << " Error : vectors of different sizes are used in operation %= \n"; return *this; }
 	for (int i = 0; i < num; i++) v[i] *= b.v[i];
 	return *this;
 }
@@ -290,13 +295,15 @@ ComplexVector ComplexVector::operator*(const long& b) {
 
 ComplexVector& ComplexVector::operator/=(const ComplexVector& b)  // (a0/b0, a1/b1,...,an-1/bn-1)
 {
-	if (num != b.num || ~b) { std::cout << " Error Vector opreation %= \n"; return *this; }
+	if (num != b.num || ~b) { 
+		std::cout << " Error: vectors of different sizes are used or b is zer0 opreation %= \n"; 
+		return *this; }
 	for (int i = 0; i < num; i++) v[i] *= b.v[i];
 	return *this;
 }
 ComplexVector& ComplexVector::operator/=(const ComplexDouble& b)
 {
-	if (fabs(b.real()) < 1.e-5 && fabs(b.imag()) < 1.e-5)
+	if (fabs(b.real()) < EpsÑalculations && fabs(b.imag()) < EpsÑalculations)
 	{
 		std::cout << " Error Vector opreation /= b \n";
 	}
@@ -304,7 +311,7 @@ ComplexVector& ComplexVector::operator/=(const ComplexDouble& b)
 	return *this;
 }
 ComplexVector& ComplexVector::operator/=(const double& b) {
-	if (fabs(b) < 1.e-5)
+	if (fabs(b) < EpsÑalculations)
 	{
 		std::cout << " Error Vector opreation /= b \n";
 	}
@@ -312,7 +319,7 @@ ComplexVector& ComplexVector::operator/=(const double& b) {
 	return *this;
 }
 ComplexVector& ComplexVector::operator/=(const long& b) {
-	if (fabs(b) < 1.e-5)
+	if (fabs(b) < EpsÑalculations)
 	{
 		std::cout << " Error Vector opreation /= b \n";
 	}
