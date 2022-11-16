@@ -19,6 +19,8 @@ struct MyTime
 		return minute > s.minute ? true : false;
 	}
 };
+ostream& operator<<(ostream& os, MyTime& t);
+istream& operator>>(istream& iso, MyTime& t);
 class  MyAssoc
 {
 	uint* MasFlightNumber;
@@ -42,14 +44,8 @@ public:
 		}
 	}
 
-	void TableFlight()
-	{
-		cout << " TableFlight \n";
-		for (int i = 0; i < numRec; i++) {
-			cout << " Flight " << MasFlightNumber[i] << " time " << MasTime[i] << endl;
-		}
-	}
-
+	void TableFlight();
+	
 	uint operator[](MyTime& s) {
 		uint flight = 0;
 		for (int i = 0; i < numRec; i++)
