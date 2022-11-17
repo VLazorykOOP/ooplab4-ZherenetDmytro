@@ -1,5 +1,5 @@
 #include "ComplexMatrix.h"
-const double EpsÑalculations = 1.e-5;
+const double EpsCalculations = 1.e-5;
 ComplexMatrix::ComplexMatrix(int ni, int mi, ComplexDouble b)
 {
 	if (ni <= 0) n = 2; else n = ni;
@@ -229,7 +229,7 @@ ComplexMatrix ComplexMatrix::operator*(const double& b)
 
 ComplexMatrix& ComplexMatrix::operator/=(const ComplexDouble& b)
 {
-	if (fabs(b.real()) < EpsÑalculations && fabs(b.imag()) < EpsÑalculations)
+	if (fabs(b.real()) < EpsCalculations && fabs(b.imag()) < EpsCalculations)
 	{
 		std::cout << " Error Matrix opreation /= b \n";
 	}
@@ -239,7 +239,7 @@ ComplexMatrix& ComplexMatrix::operator/=(const ComplexDouble& b)
 
 ComplexMatrix& ComplexMatrix::operator/=(const double& b)
 {
-	if (fabs(b) < EpsÑalculations)
+	if (fabs(b) < EpsCalculations)
 	{
 		std::cout << " Error Matrix opreation /= b \n";
 	}

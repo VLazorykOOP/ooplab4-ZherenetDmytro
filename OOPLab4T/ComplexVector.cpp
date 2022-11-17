@@ -1,6 +1,6 @@
 #include "ComplexVector.h"
 ComplexDouble ComplexVector::badIndexRef=0;
-const double EpsÑalculations = 1.e-5;
+const double EpsCalculations = 1.e-5;
 ComplexDouble RandComplexDouble()
 {
 	return ComplexDouble(rand() % 10000 / (1.0 + rand() / 100), rand() % 10000 / (1.0 + rand() / 100));
@@ -91,14 +91,14 @@ void ComplexVector::Output() {
 bool ComplexVector::operator!() const   // true : exist v[i] != 0
 {
 	for (int i = 0; i < num; i++)
-		if (fabs(v[i].real()) > EpsÑalculations || fabs(v[i].imag()) > EpsÑalculations)
+		if (fabs(v[i].real()) > EpsCalculations || fabs(v[i].imag()) > EpsCalculations)
 			return true;
 	return false;
 }
 bool ComplexVector::operator~() const  // true : all  v[i] != 0
 {
 	for (int i = 0; i < num; i++)
-		if (fabs(v[i].real()) < EpsÑalculations && fabs(v[i].imag()) < EpsÑalculations)
+		if (fabs(v[i].real()) < EpsCalculations && fabs(v[i].imag()) < EpsCalculations)
 			return false;
 	return true;
 }
@@ -303,7 +303,7 @@ ComplexVector& ComplexVector::operator/=(const ComplexVector& b)  // (a0/b0, a1/
 }
 ComplexVector& ComplexVector::operator/=(const ComplexDouble& b)
 {
-	if (fabs(b.real()) < EpsÑalculations && fabs(b.imag()) < EpsÑalculations)
+	if (fabs(b.real()) < EpsCalculations && fabs(b.imag()) < EpsCalculations)
 	{
 		std::cout << " Error Vector opreation /= b \n";
 	}
@@ -311,7 +311,7 @@ ComplexVector& ComplexVector::operator/=(const ComplexDouble& b)
 	return *this;
 }
 ComplexVector& ComplexVector::operator/=(const double& b) {
-	if (fabs(b) < EpsÑalculations)
+	if (fabs(b) < EpsCalculations)
 	{
 		std::cout << " Error Vector opreation /= b \n";
 	}
@@ -319,7 +319,7 @@ ComplexVector& ComplexVector::operator/=(const double& b) {
 	return *this;
 }
 ComplexVector& ComplexVector::operator/=(const long& b) {
-	if (fabs(b) < EpsÑalculations)
+	if (fabs(b) < EpsCalculations)
 	{
 		std::cout << " Error Vector opreation /= b \n";
 	}

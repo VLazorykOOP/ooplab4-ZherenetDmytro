@@ -59,7 +59,7 @@ int mainExample2() {
 	ComplexMatrix A(5),  B(5), C(5), D(5), F(5);
 	ComplexVector a(5), b(5), c(5);
 	ComplexDouble _a(3.2, 5), _b(1, 2), _c = RandComplexDouble();
-	{
+	
 		A.RandComplexMatrix();
 		B.RandComplexMatrix();
 		C.RandComplexMatrix();
@@ -67,6 +67,7 @@ int mainExample2() {
 		a.RandComplexVector();
 		b.RandComplexVector();
 		c.RandComplexVector();
+
 		cout << endl;
 		cout << "Matrix A \n" << A;
 		cout << "Matrix B \n" << B;
@@ -76,7 +77,9 @@ int mainExample2() {
 		cout << "Vector a \n" << a;
 		cout << "Vector b \n" << b;
 		cout << "Vector c \n" << c;
-	}
+	
+	/// Обчислити вираз : F = A+B*_a-B*_c+C/_b; 
+	///                   c = F*a + D*b     
 	F = A + B * _a - B * _c + C / _b;
 	cout << "Matrix F \n" << F;
 	c = F * a + D * b;
