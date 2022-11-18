@@ -15,12 +15,13 @@ class ComplexVector
 	int num = 2;
 	int state = 0;
 	static ComplexDouble badIndexRef;
+	static int numVec;
 public:
 	ComplexVector() : num(0), v(nullptr) {}
 	ComplexVector(int n);
 	ComplexVector(int n, ComplexDouble&);
 	ComplexVector(int n, ComplexDouble*);
-	ComplexVector(const ComplexVector& s);
+	ComplexVector(const ComplexVector& s);  // crot copy
 	ComplexVector& operator=(const ComplexVector& s);
 	ComplexVector& operator=(ComplexVector&& s) noexcept;
 	void Init(int n);   //
@@ -37,9 +38,13 @@ public:
 	// reload operators
 	bool operator!() const;   // true : v[i] != 0
 	bool operator~() const;   // true : all v[i] != 0
+
 	ComplexDouble& operator[](int index);
 	ComplexVector& operator++();
 	ComplexVector& operator++(int);
+	friend  ComplexVector& operator--(ComplexVector&);
+	friend  ComplexVector& operator--(ComplexVector& ,int);
+
 	ComplexVector& operator+=(const ComplexVector& s);
 	ComplexVector& operator+=(const ComplexDouble& b);
 	ComplexVector& operator+=(const double& b);
@@ -78,5 +83,8 @@ public:
 	ComplexVector operator/(const double& b);
 	ComplexVector operator/(const long& b);
 	//
+
+	bool operator||(const ComplexVector& b);
+	friend bool operator&&(const ComplexVector& a,const ComplexVector& b);
 	void RandComplexVector();
 };

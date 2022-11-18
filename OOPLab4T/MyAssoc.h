@@ -27,7 +27,7 @@ class  MyAssoc
 	MyTime* MasTime;
 	int MaxRec;
 	int numRec;
-	int State;
+	int State=0;
 public:
 	MyAssoc() : numRec(0), MaxRec(DefaultAssocSize) {
 		MasFlightNumber = new  uint[DefaultAssocSize];   MasTime = new MyTime[DefaultAssocSize];

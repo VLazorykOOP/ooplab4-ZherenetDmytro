@@ -1,5 +1,6 @@
 #include "ComplexVector.h"
 ComplexDouble ComplexVector::badIndexRef=0;
+int ComplexVector::numVec =0;
 const double EpsCalculations = 1.e-5;
 ComplexDouble RandComplexDouble()
 {
@@ -360,6 +361,12 @@ ComplexVector ComplexVector::operator/(const long& b) {
 	return rez;
 }
 
+bool ComplexVector::operator||(const ComplexVector& b)
+{
+	if (this->num > 0 || b.num > 0) return true;
+	return false;
+}
+
 void ComplexVector::RandComplexVector()
 {
 	for (int i = 0; i < num; i++) v[i] = RandComplexDouble();
@@ -392,4 +399,23 @@ ostream& operator<<(ostream& os, ComplexVector& s) {
 		os << s.v[i] << '\t';
 	os << endl;
 	return os;
+}
+
+ComplexVector& operator--(ComplexVector& s)
+{
+	s -= 1.0;
+	return s;
+}
+
+ComplexVector& operator--(ComplexVector& s, int)
+{
+	s -= ComplexDouble(1.0, 1.0);
+	return s;
+}
+
+bool operator&&(const ComplexVector& a, const ComplexVector& b)
+{
+	if (a.num > 0 && b.num > 0) return true;
+	return false;
+
 }
