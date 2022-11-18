@@ -23,10 +23,10 @@ public:
 	ComplexVector(const ComplexVector& s);
 	ComplexVector& operator=(const ComplexVector& s);
 	ComplexVector& operator=(ComplexVector&& s) noexcept;
-    void Init(int n);   //
+	void Init(int n);   //
 	void Init(int n, ComplexDouble);   //
 	~ComplexVector() {
-	//	std::cout << " del vec";
+		//	std::cout << " del vec";
 		if (v) delete[] v;
 	}
 	void Input();
@@ -38,7 +38,8 @@ public:
 	bool operator!() const;   // true : v[i] != 0
 	bool operator~() const;   // true : all v[i] != 0
 	ComplexDouble& operator[](int index);
-
+	ComplexVector& operator++();
+	ComplexVector& operator++(int);
 	ComplexVector& operator+=(const ComplexVector& s);
 	ComplexVector& operator+=(const ComplexDouble& b);
 	ComplexVector& operator+=(const double& b);

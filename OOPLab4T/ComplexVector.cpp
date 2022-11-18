@@ -48,6 +48,7 @@ ComplexVector::ComplexVector(const ComplexVector& s) {
 	for (int i = 0; i < num; i++)   v[i] = s.v[i];
 }
 ComplexVector& ComplexVector::operator=(const ComplexVector& s) {
+	if (this == &s) return *this;
 	if (num != s.num)
 	{
 		if (v) delete[] v;
@@ -110,6 +111,12 @@ ComplexDouble& ComplexVector::operator[](int index)
 	return badIndexRef;
 }
 
+ComplexVector& ComplexVector::operator++()
+{
+	for (int i = 0; i < num; i++) v[i] += 1;
+	return *this;
+}
+
 ComplexVector& ComplexVector::operator+=(const ComplexVector& b)
 {
 	int i;
@@ -128,6 +135,11 @@ ComplexVector& ComplexVector::operator+=(const ComplexVector& b)
 		}
 		else for (i = 0; i < b.num; i++) v[i] += b.v[i];
 	}
+	return *this;
+}
+ComplexVector& ComplexVector::operator++(int)
+{
+	for (int i = 0; i < num; i++) v[i] += ComplexDouble(1,1);
 	return *this;
 }
 ComplexVector& ComplexVector::operator+=(const ComplexDouble& b)

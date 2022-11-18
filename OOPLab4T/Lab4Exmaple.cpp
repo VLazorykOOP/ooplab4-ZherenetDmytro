@@ -39,8 +39,13 @@ int mainExample1() {
 	cout << " D  \n" << D;
 
 	F = A + B - B * c + C / b + D * a;
+
 	
 	cout << " \n F =   \n" << F;
+	cout << " A  \n" << A;
+	cout << "++ A  \n" << ++A;
+	A++;
+	cout << " A ++ \n" << A;
 	return 2;
 }
 
