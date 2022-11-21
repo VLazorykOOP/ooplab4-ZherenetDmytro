@@ -376,6 +376,10 @@ bool ComplexVector::operator==(const ComplexVector& s)
 		return ret;
 }
 
+bool ComplexVector::operator!=(const ComplexVector& s)
+{
+	return !(*this==s);
+}
 void ComplexVector::RandComplexVector()
 {
 	for (int i = 0; i < num; i++) v[i] = RandComplexDouble();
