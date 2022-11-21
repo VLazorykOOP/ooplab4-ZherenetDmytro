@@ -367,6 +367,15 @@ bool ComplexVector::operator||(const ComplexVector& b)
 	return false;
 }
 
+bool ComplexVector::operator==(const ComplexVector& s)
+{
+	bool ret = true;
+	if (num != s.num) return false;
+	for (int i = 0; i < num && ret; i++) if (fabs(v[i].real() - s.v[i].real()) > EpsCalculations
+		|| fabs(v[i].imag() - s.v[i].imag()) > EpsCalculations) ret = false;
+		return ret;
+}
+
 void ComplexVector::RandComplexVector()
 {
 	for (int i = 0; i < num; i++) v[i] = RandComplexDouble();
