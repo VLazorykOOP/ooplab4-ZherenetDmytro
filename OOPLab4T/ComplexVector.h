@@ -86,7 +86,6 @@ public:
 
 	bool operator||(const ComplexVector& b);
 	friend bool operator&&(const ComplexVector& a,const ComplexVector& b);
-	bool operator==(const  ComplexVector& a);
-	bool operator!=(const  ComplexVector& a);
+	bool operator==()
 	void RandComplexVector();
 };
