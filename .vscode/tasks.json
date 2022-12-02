@@ -8,9 +8,9 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${workspaceFolder}\\*.cpp",
+				"${workspaceFolder}\\ooplab4t\\*.cpp",
 				"-o",
-				"${workspaceFolder}\\lab4oop.exe"
+				"${workspaceFolder}\\ooplab4t\\lab4oop.exe"
 			],
 			"options": {
 				"cwd": "${fileDirname}"
@@ -18,7 +18,10 @@
 			"problemMatcher": [
 				"$gcc"
 			],
-			"group": "build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
 			"detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
 		}
 	]
